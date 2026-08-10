@@ -16,3 +16,10 @@ def search_player(player: str):
     params = {"search": player}
     response = requests.get(f"{BASE_URL}/players/profiles",headers=headers, params=params)
     return response.json()
+
+@app.get("/stats")
+def player_stats(player_id: int, season: int=2023):
+    headers = {"x-apisports-key": API_KEY}
+    params = {"id":player_id, "season":season}
+    response = requests.get(f"{BASE_URL}/players", headers=headers, params=params)
+    return response.json()
